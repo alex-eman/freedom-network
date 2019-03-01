@@ -62,8 +62,24 @@
     </header>
 
     <main role="main" class="container">
-        <div class="row">
-            <div class="col-md-8">
+        {% if user.is_authenticated %}
+            <div class="row p-3 mb-2 bg-secondary text-white">
+                <div class="col">
+                    Messages
+                </div>
+                <div class="col">
+                    Resources
+                </div>
+                <div class="col">
+                    Jobs and Opportunities
+                </div>
+                <div class="col">
+                    Forums
+                </div>
+            </div>
+        {% endif %}
+        
+            <div class="col">
                 {% if messages %}
                     {% for message in messages %}
                         <div class="alert alert-{{ message.tags}}">
@@ -75,20 +91,8 @@
                 {% block content %}
                 {% endblock %}
             </div>
-            <div class="col-md-4">
-                <div class="content-section">
-                    <h3>Our Sidebar</h3>
-                    <p class='text-muted'>Sample Info.
-                        <ul class="list-group">
-                            <li class="list-group-item list-group-item-light">Upcoming Events</li>
-                            <li class="list-group-item list-group-item-light">Announcements</li>
-                            <li class="list-group-item list-group-item-light">Calendars</li>
-                            <li class="list-group-item list-group-item-light">etc</li>
-                        </ul>
-                    </p>
-                </div>
-            </div>
-        </div>
+           
+        
     </main>
 
     <!-- Optional JavaScript -->
