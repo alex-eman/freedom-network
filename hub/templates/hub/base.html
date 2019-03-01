@@ -65,16 +65,16 @@
         {% if user.is_authenticated %}
             <div class="row p-3 mb-2 bg-secondary text-white">
                 <div class="col">
-                    Messages
+                    <a class="badge badge-light" href="{% url 'hub-messages' %}">Messages</a>
                 </div>
                 <div class="col">
-                    Resources
+                    <a class="badge badge-light" href="{% url 'hub-resources' %}">Resources</a>
                 </div>
                 <div class="col">
-                    Jobs and Opportunities
+                    <a class="badge badge-light" href="{% url 'hub-jobs' %}">Jobs and Opportunities</a>
                 </div>
                 <div class="col">
-                    Forums
+                    <a class="badge badge-light" href="{% url 'hub-forums' %}">Forums</a>
                 </div>
             </div>
         {% endif %}

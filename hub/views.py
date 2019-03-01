@@ -21,3 +21,15 @@ def become_mentor(request):
 
 def need_help(request):
     return render(request, 'hub/need_help.html')
+
+def messages(request):
+    return render(request, 'hub/messages.html')
+
+def resources(request):
+    return render(request, 'hub/resources.html')
+
+def jobs(request):
+    return render(request, 'hub/jobs.html')
+
+def forums(request):
+    return render(request, 'hub/forums.html')

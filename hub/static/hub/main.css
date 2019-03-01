@@ -1,5 +1,5 @@
 body {
-    background: #fafafa;
+    background: #f4ebd4;
     color: #333333;
     margin-top: 5rem;
   }
@@ -82,4 +82,9 @@ body {
   
   .account-heading {
     font-size: 2.5rem;
+  }
+
+  .badge {
+    padding: 10px;
+    font-size: 1rem;
   }
