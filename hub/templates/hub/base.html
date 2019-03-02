@@ -17,6 +17,14 @@
     <!-- Custom CSS for Blog -->
     <link rel="stylesheet" type="text/css" href="{% static 'hub/main.css' %}">
 
+    {% block additional_styles %}
+        <style>
+            body{
+                background-color: #f4ebd4;
+            }
+        </style>
+    {% endblock %}
+
     {% if title %}
         <title>Freedom Network - {{ title }}</title>
     {% else %}
@@ -63,23 +71,24 @@
 
     <main role="main" class="container">
         {% if user.is_authenticated %}
-            <div class="row p-3 mb-2 bg-secondary text-white">
-                <div class="col">
+            <div class="row p-3 m-auto bg-secondary text-white">
+                <div class="col col-lg-3">
                     <a class="badge badge-light" href="{% url 'hub-messages' %}">Messages</a>
                 </div>
-                <div class="col">
+                <div class="col col-lg-3">
                     <a class="badge badge-light" href="{% url 'hub-resources' %}">Resources</a>
                 </div>
-                <div class="col">
+                <div class="col col-lg-3">
+                        <a class="badge badge-light" href="{% url 'hub-forums' %}">Forums</a>
+                </div>
+                <div class="col col-lg-3">
                     <a class="badge badge-light" href="{% url 'hub-jobs' %}">Jobs and Opportunities</a>
                 </div>
-                <div class="col">
-                    <a class="badge badge-light" href="{% url 'hub-forums' %}">Forums</a>
-                </div>
+
             </div>
         {% endif %}
         
-            <div class="col">
+            <div class="col" >
                 {% if messages %}
                     {% for message in messages %}
                         <div class="alert alert-{{ message.tags}}">
