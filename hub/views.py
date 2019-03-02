@@ -23,13 +23,17 @@ def need_help(request):
     return render(request, 'hub/need_help.html')
 
 def messages(request):
-    return render(request, 'hub/messages.html')
+    context = {"message_page": "active"}
+    return render(request, 'hub/messages.html', context)
 
 def resources(request):
-    return render(request, 'hub/resources.html')
+    context = {"resources_page": "active"}
+    return render(request, 'hub/resources.html', context)
 
 def jobs(request):
-    return render(request, 'hub/jobs.html')
+    context = {"jobs_page": "active"}
+    return render(request, 'hub/jobs.html', context)
 
 def forums(request):
-    return render(request, 'hub/forums.html')
+    context = {"forums_page": "active"}
+    return render(request, 'hub/forums.html', context)

@@ -71,18 +71,18 @@
 
     <main role="main" class="container">
         {% if user.is_authenticated %}
-            <div class="row p-3 m-auto bg-secondary text-white">
+            <div class="row p-3 m-auto text-white" style="background-color: #bab6a3;">
                 <div class="col col-lg-3">
-                    <a class="badge badge-light" href="{% url 'hub-messages' %}">Messages</a>
+                    <a class="badge badge-light {{ message_page }}" href="{% url 'hub-messages' %}">Messages</a>
                 </div>
                 <div class="col col-lg-3">
-                    <a class="badge badge-light" href="{% url 'hub-resources' %}">Resources</a>
+                    <a class="badge badge-light {{ resources_page }}" href="{% url 'hub-resources' %}">Resources</a>
                 </div>
                 <div class="col col-lg-3">
-                        <a class="badge badge-light" href="{% url 'hub-forums' %}">Forums</a>
+                    <a class="badge badge-light {{ forums_page }} " href="{% url 'hub-forums' %}">Forums</a>
                 </div>
                 <div class="col col-lg-3">
-                    <a class="badge badge-light" href="{% url 'hub-jobs' %}">Jobs and Opportunities</a>
+                    <a class="badge badge-light {{jobs_page}} " href="{% url 'hub-jobs' %}">Jobs and Opportunities</a>
                 </div>
 
             </div>
