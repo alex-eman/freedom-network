@@ -16,5 +16,9 @@ urlpatterns = [
     path('contact/', views.contact, name='hub-contact'),
     path('become_mentor/', views.become_mentor, name='hub-become_mentor'),
     path('need_help/', views.need_help, name='hub-need_help'),
+    path('messages/', views.messages, name='hub-messages'),
+    path('resources/', views.resources, name='hub-resources'),
+    path('jobs/', views.jobs, name='hub-jobs'),
+    path('forums/', views.forums, name='hub-forums'),
 
 ]

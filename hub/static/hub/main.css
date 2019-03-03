@@ -1,5 +1,5 @@
 body {
-    background: #fafafa;
+    background: #443f38;
     color: #333333;
     margin-top: 5rem;
   }
@@ -14,11 +14,14 @@ body {
   
   .bg-steel {
     /*background-color: #5f788a;*/
-    background-color: #05386b
+    /* background-color: #05386b */
+    background-color: #e5c957;
   }
   
   .site-header .navbar-nav .nav-link {
-    color: #cbd5db;
+    /* color: #cbd5db; */
+    color: #444444;
+
   }
   
   .site-header .navbar-nav .nav-link:hover {
@@ -82,4 +85,14 @@ body {
   
   .account-heading {
     font-size: 2.5rem;
+  }
+
+  .badge {
+    padding: 10px;
+    font-size: 1rem;
+  }
+
+  .active {
+    background-color: #e67d37;
+    color: #ffffff
   }

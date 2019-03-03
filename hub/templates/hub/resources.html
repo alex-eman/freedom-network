@@ -1,0 +1,140 @@
+<!-- hub/templates/hub/resources.html -->
+
+{% extends "hub/base.html" %}
+
+{% block content %}
+
+    <h1>Resources Page</h1>
+
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Filter Help Topics
+        </button>
+        <div class="dropdown-menu">
+            <button class="dropdown-item" type="button" onclick="myFunction('ALL')">View All</button>
+            <button class="dropdown-item" type="button" onclick="myFunction('TECH')">Technology</button>
+            <button class="dropdown-item" type="button" onclick="myFunction('EDUC')">Education</button>
+            <button class="dropdown-item" type="button" onclick="myFunction('JOB')">Jobs</button>
+            <button class="dropdown-item" type="button" onclick="myFunction('HOUSE')">Housing</button>
+        </div>
+    </div>
+
+    <div class="card mt-5 tech">
+        <div class="card-body">
+            <h5 class="card-title">Technology card title</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+            <p class="card-text">Some example text, this is where a blurb about our resources is gonna go.</p>
+            <a href="#" class="card-link">Link to article if exists</a>
+        </div>
+    </div>
+
+    <div class="card mt-5 education">
+        <div class="card-body">
+            <h5 class="card-title">Education card title</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+            <p class="card-text">Some example text, this is where a blurb about our resources is gonna go.</p>
+            <a href="#" class="card-link">Link to article if exists</a>
+        </div>
+     </div>
+
+     <div class="card mt-5 education" >
+        <div class="card-body">
+            <h5 class="card-title">Education 2 card title</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+            <p class="card-text">Some example text, this is where a blurb about our resources is gonna go.</p>
+            <a href="#" class="card-link">Link to article if exists</a>
+        </div>
+    </div>
+
+    <div class="card mt-5 job" >
+        <div class="card-body">
+            <h5 class="card-title">Job card title</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+            <p class="card-text">Some example text, this is where a blurb about our resources is gonna go.</p>
+            <a href="#" class="card-link">Link to article if exists</a>
+        </div>
+    </div>
+
+    <div class="card mt-5 job" >
+        <div class="card-body">
+            <h5 class="card-title">Job 2 card title</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+            <p class="card-text">Some example text, this is where a blurb about our resources is gonna go.</p>
+            <a href="#" class="card-link">Link to article if exists</a>
+        </div>
+    </div>
+
+    <div class="card mt-5 job" >
+        <div class="card-body">
+            <h5 class="card-title">Job 3 card title</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+            <p class="card-text">Some example text, this is where a blurb about our resources is gonna go.</p>
+            <a href="#" class="card-link">Link to article if exists</a>
+        </div>
+    </div>
+
+    <div class="card mt-5 housing" >
+        <div class="card-body">
+            <h5 class="card-title">Housing card title</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+            <p class="card-text">Some example text, this is where a blurb about our resources is gonna go.</p>
+            <a href="#" class="card-link">Link to article if exists</a>
+        </div>
+    </div>
+
+     <script>
+     function myFunction(input){
+        var tech = document.querySelectorAll(".tech");
+        var education = document.querySelectorAll(".education");
+        var jobs = document.querySelectorAll(".job");
+        var housing = document.querySelectorAll(".housing");
+
+        var techStat = "none";
+        var educStat = "none";
+        var jobStat = "none";
+        var houseStat = "none";
+
+        switch (input){
+            case "TECH":
+                techStat = "block";
+                break;
+            case "EDUC":
+                educStat = "block";
+                break;
+            case "JOB":
+                jobStat = "block";
+                break;
+            case "HOUSE":
+                houseStat = "block";
+                break;
+            case "ALL":
+                techStat = "block";
+                educStat = "block";
+                jobStat = "block";
+                houseStat = "block";
+            default:
+                break;
+        }
+        var a;
+        for(a = 0; a < tech.length; a++){
+            tech[a].style.display = techStat;
+        }
+        var b;
+        for(b = 0; b < education.length; b++){
+            education[b].style.display = educStat;
+        }
+
+        var c;
+        for(c = 0; c < jobs.length; c++){
+            jobs[c].style.display = jobStat;
+        }
+        var d;
+        for(d = 0; d < housing.length; d++){
+            housing[d].style.display = houseStat;
+        }
+
+     }
+
+     </script>
+
+{% endblock content %}

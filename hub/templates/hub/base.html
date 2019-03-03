@@ -17,6 +17,14 @@
     <!-- Custom CSS for Blog -->
     <link rel="stylesheet" type="text/css" href="{% static 'hub/main.css' %}">
 
+    {% block additional_styles %}
+        <style>
+            body{
+                background-color: #f4ebd4;
+            }
+        </style>
+    {% endblock %}
+
     {% if title %}
         <title>Freedom Network - {{ title }}</title>
     {% else %}
@@ -62,8 +70,25 @@
     </header>
 
     <main role="main" class="container">
-        <div class="row">
-            <div class="col-md-8">
+        {% if user.is_authenticated %}
+            <div class="row p-3 m-auto text-white" style="background-color: #bab6a3;">
+                <div class="col col-lg-3">
+                    <a class="badge badge-light {{ message_page }}" href="{% url 'hub-messages' %}">Messages</a>
+                </div>
+                <div class="col col-lg-3">
+                    <a class="badge badge-light {{ resources_page }}" href="{% url 'hub-resources' %}">Resources</a>
+                </div>
+                <div class="col col-lg-3">
+                    <a class="badge badge-light {{ forums_page }} " href="{% url 'hub-forums' %}">Forums</a>
+                </div>
+                <div class="col col-lg-3">
+                    <a class="badge badge-light {{jobs_page}} " href="{% url 'hub-jobs' %}">Jobs and Opportunities</a>
+                </div>
+
+            </div>
+        {% endif %}
+        
+            <div class="col mt-5" >
                 {% if messages %}
                     {% for message in messages %}
                         <div class="alert alert-{{ message.tags}}">
@@ -75,20 +100,8 @@
                 {% block content %}
                 {% endblock %}
             </div>
-            <div class="col-md-4">
-                <div class="content-section">
-                    <h3>Our Sidebar</h3>
-                    <p class='text-muted'>Sample Info.
-                        <ul class="list-group">
-                            <li class="list-group-item list-group-item-light">Upcoming Events</li>
-                            <li class="list-group-item list-group-item-light">Announcements</li>
-                            <li class="list-group-item list-group-item-light">Calendars</li>
-                            <li class="list-group-item list-group-item-light">etc</li>
-                        </ul>
-                    </p>
-                </div>
-            </div>
-        </div>
+           
+        
     </main>
 
     <!-- Optional JavaScript -->

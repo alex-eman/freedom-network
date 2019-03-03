@@ -12,7 +12,7 @@ class Profile(models.Model):
     mentor = models.ForeignKey(User, related_name='mentor', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return f'{self.user.username} Profile'
+        return '{self.user.username} Profile'
 
     def save(self, *args, **kwargs):
         super(Profile, self).save(*args, **kwargs)
@@ -23,7 +23,3 @@ class Profile(models.Model):
             output_size = (300, 300)
             img.thumbnail(output_size)
             img.save(self.image.path)
-
-
-# have a field named mentor, this links to one user
-# then we can search all users and filter where mentor == specific name
