@@ -21,3 +21,19 @@ def become_mentor(request):
 
 def need_help(request):
     return render(request, 'hub/need_help.html')
+
+def messages(request):
+    context = {"message_page": "active"}
+    return render(request, 'hub/messages.html', context)
+
+def resources(request):
+    context = {"resources_page": "active"}
+    return render(request, 'hub/resources.html', context)
+
+def jobs(request):
+    context = {"jobs_page": "active"}
+    return render(request, 'hub/jobs.html', context)
+
+def forums(request):
+    context = {"forums_page": "active"}
+    return render(request, 'hub/forums.html', context)
