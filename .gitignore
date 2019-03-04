@@ -10,6 +10,7 @@ db.sqlite3
 
 # Virtual Env #
 freenet/*
+freed/*
 
 # Visual Studio Code #
 .vscode/*
