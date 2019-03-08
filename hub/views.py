@@ -6,6 +6,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from users.models import Profile
+from .forms import ContactForm
 
 @login_required
 def home(request):
@@ -14,6 +15,7 @@ def home(request):
         mentor = User.objects.filter(username=request.user.username)
 
         context = {
+            'user': mentor,
             'mentees': Profile.objects.filter(mentor=mentor[0])
         }
 
@@ -28,6 +30,9 @@ def about_org(request):
     return render(request, 'hub/about_org.html')
 
 def contact(request):
+
+    if request.method == 'GET':
+        form = ContactForm()
     return render(request, 'hub/contact.html')
 
 def become_mentor(request):
