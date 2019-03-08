@@ -4,9 +4,7 @@
 
 {% block content %}
 
-  {% for resource in resources %}
-    <h1>resource.res_type </h1>
-  {% endfor %}
+
 
     <h1>Resources Page</h1>
 
@@ -23,68 +21,19 @@
         </div>
     </div>
 
-    <div class="card mt-5 tech">
-        <div class="card-body">
-            <h5 class="card-title">Technology card title</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">Some example text, this is where a blurb about our resources is gonna go.</p>
-            <a href="#" class="card-link">Link to article if exists</a>
+    {% for resource in resources %}
+        <div class="card mt-5 {{resource.res_type}}">
+            <div class="card-body">
+                <h5 class="card-title">{{resource.title}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{resource.subtitle}}</h6>
+                <p class="card-text">{{resource.content}}</p>
+                <a href="#" class="card-link">{{resource.url}}</a>
+            </div>
         </div>
-    </div>
 
-    <div class="card mt-5 education">
-        <div class="card-body">
-            <h5 class="card-title">Education card title</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">Some example text, this is where a blurb about our resources is gonna go.</p>
-            <a href="#" class="card-link">Link to article if exists</a>
-        </div>
-     </div>
+    {% endfor %}
 
-     <div class="card mt-5 education" >
-        <div class="card-body">
-            <h5 class="card-title">Education 2 card title</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">Some example text, this is where a blurb about our resources is gonna go.</p>
-            <a href="#" class="card-link">Link to article if exists</a>
-        </div>
-    </div>
-
-    <div class="card mt-5 job" >
-        <div class="card-body">
-            <h5 class="card-title">Job card title</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">Some example text, this is where a blurb about our resources is gonna go.</p>
-            <a href="#" class="card-link">Link to article if exists</a>
-        </div>
-    </div>
-
-    <div class="card mt-5 job" >
-        <div class="card-body">
-            <h5 class="card-title">Job 2 card title</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">Some example text, this is where a blurb about our resources is gonna go.</p>
-            <a href="#" class="card-link">Link to article if exists</a>
-        </div>
-    </div>
-
-    <div class="card mt-5 job" >
-        <div class="card-body">
-            <h5 class="card-title">Job 3 card title</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">Some example text, this is where a blurb about our resources is gonna go.</p>
-            <a href="#" class="card-link">Link to article if exists</a>
-        </div>
-    </div>
-
-    <div class="card mt-5 housing" >
-        <div class="card-body">
-            <h5 class="card-title">Housing card title</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-            <p class="card-text">Some example text, this is where a blurb about our resources is gonna go.</p>
-            <a href="#" class="card-link">Link to article if exists</a>
-        </div>
-    </div>
+    
 
      <script>
      function myFunction(input){
