@@ -7,7 +7,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from users.models import Profile
 from .forms import ContactForm
+from .models import Resource
 
+# Render specific homepage dependent on user type
 @login_required
 def home(request):
     if request.user.is_staff:
@@ -23,17 +25,28 @@ def home(request):
     else:
         return render(request, 'hub/home.html')
 
+# Render About Freedom Network page
 def about_freenet(request):
     return render(request, 'hub/about_freenet.html')
 
+# Render About Partner Organization page
 def about_org(request):
     return render(request, 'hub/about_org.html')
+
 
 def contact(request):
 
     if request.method == 'GET':
         form = ContactForm()
-    return render(request, 'hub/contact.html')
+    else:
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            from_email = form.cleaned_data['email']
+            content = form.cleaned_data['message']
+
+
+    return render(request, 'hub/contact.html', {'form': form})
 
 def become_mentor(request):
     return render(request, 'hub/become_mentor.html')
@@ -46,7 +59,13 @@ def messages(request):
     return render(request, 'hub/messages.html', context)
 
 def resources(request):
-    context = {"resources_page": "active"}
+
+    res = Resource.objects.all()
+
+    context = {
+        "resources_page": "active",
+        'resources': res
+    }
     return render(request, 'hub/resources.html', context)
 
 def jobs(request):
