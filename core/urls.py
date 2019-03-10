@@ -19,6 +19,8 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from users import views as user_views
+from django.conf.urls import url
+from django_private_chat import urls as django_private_chat_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +28,8 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('', include('hub.urls')),
+    url(r'^', include('django_private_chat.urls'))
+#    url(r'^', include('chat.urls'))
 ]
 
 if settings.DEBUG:

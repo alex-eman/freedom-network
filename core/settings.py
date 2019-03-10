@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'hub.apps.HubConfig',
     'users.apps.UsersConfig',
     'crispy_forms',
+    'django_private_chat',
 ]
 
 MIDDLEWARE = [
@@ -73,7 +74,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'core.wsgi.application'
-
+CHAT_WS_SERVER_HOST = 'localhost'
+CHAT_WS_SERVER_PORT = 5002
+CHAT_WS_SERVER_PROTOCOL = 'ws'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
