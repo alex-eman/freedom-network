@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'hub.apps.HubConfig',
     'users.apps.UsersConfig',
     'crispy_forms',
-    'django_private_chat',
+    'channels',
+    'chat',
 ]
 
 MIDDLEWARE = [
@@ -74,6 +75,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'core.wsgi.application'
+ASGI_APPLICATION = 'core.routing.application'
 
 
 # Database
@@ -132,8 +134,3 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'hub-home'
 LOGIN_URL = 'login'
-
-# Django Private Chat Variables
-CHAT_WS_SERVER_HOST = 'localhost'
-CHAT_WS_SERVER_PORT = 8080
-CHAT_WS_SERVER_PROTOCOL = 'ws'
