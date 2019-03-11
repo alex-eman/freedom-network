@@ -21,18 +21,36 @@ class ChatConsumer(AsyncConsumer):
         me = self.scope['user']
         thread_obj = await self.get_thread(me, other_user)
 
-        #await asyncio.sleep(10)
-        await self.send({
-            "type": "websocket.send",
-            "text": "Hello World"
-        })
-
     async def websocket_receive(self, event):
-        print("received", event)
+
+        front_text = event.get('text', None)
+        if front_text is not None:
+
+            # Get entered text
+            loaded_dict_data = json.loads(front_text)
+            msg = loaded_dict_data.get('message')
+            
+            # Get user who sent text
+            user = self.scope['user']
+            username = 'invalid'
+            if user.is_authenticated:
+                username = user.username
+
+            # Prepare response package
+            response = {
+                'message': msg,
+                'username': username
+            }
+
+            # Send the message
+            await self.send({
+                "type": "websocket.send",
+                "text": json.dumps(response)
+            })
 
     async def websocket_disconnect(self, event):
         print("disconnected", event)
 
     @database_sync_to_async
     def get_thread(self, user, other_username):
-        return Thread.objects.get_or_new(user, username)[0]
+        return Thread.objects.get_or_new(user, other_username)[0]
