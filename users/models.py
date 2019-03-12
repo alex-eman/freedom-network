@@ -12,7 +12,7 @@ class Profile(models.Model):
     mentor = models.ForeignKey(User, related_name='mentor', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return '{self.user.username} Profile'
+        return self.user.username + ' Profile'
 
     def save(self, *args, **kwargs):
         super(Profile, self).save(*args, **kwargs)

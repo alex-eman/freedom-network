@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'hub.apps.HubConfig',
     'users.apps.UsersConfig',
     'crispy_forms',
+    'channels',
+    'chat',
 ]
 
 MIDDLEWARE = [
@@ -73,6 +75,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'core.wsgi.application'
+ASGI_APPLICATION = 'core.routing.application'
 
 
 # Database
@@ -124,6 +127,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Channels Layer settings
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("localhost", 8085)],
+        }
+    }
+}
+# Profile pictures related
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 

@@ -17,7 +17,7 @@ def home(request):
         mentor = User.objects.filter(username=request.user.username)
 
         context = {
-            'user': mentor,
+            'user': mentor[0],
             'mentees': Profile.objects.filter(mentor=mentor[0])
         }
 
