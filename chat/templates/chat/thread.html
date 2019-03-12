@@ -1,72 +1,79 @@
+<!-- chat/templates/chat/thread.html -->
+
 {% extends "hub/base.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
-<h3>Thread for {% if user != object.first %}{{ object.first }}{% else %}{{ object.second }}{% endif %}</h3>
 
-<ul id='chat-items'>
+  <h3>Thread for {% if user != object.first %}{{ object.first }}{% else %}{{ object.second }}{% endif %}</h3>
 
-  {% for chat in object.chatmessage_set.all %}
-  <li>{{ chat.message }} via {{ chat.user }}</li>
-  {% endfor %}
+  <ul id='chat-items'>
 
-</ul>
+    {% for chat in object.chatmessage_set.all %}
+      <li>{{ chat.message }} - {{ chat.user }}</li>
+    {% endfor %}
 
-<form id='form' method='POST'> {% csrf_token %}
-  <input type='hidden' id='my_username' value='{{ user.username }}' />
-{{form.as_p }}
-<input type='submit' class='btn btn-primary'/>
-</form>
+  </ul>
+
+  <form id='form' method='POST'> 
+  
+    {% csrf_token %}
+    <input type='hidden' id='my_username' value='{{ user.username }}'/>
+    {{ form|crispy }}
+    <input type='submit' class='btn btn-primary'/>
+
+  </form>
 
 {% endblock %}
 
 {% block script %}
 
-<script>
-// websocket scripts
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reconnecting-websocket/1.0.0/reconnecting-websocket.js"></script>
 
-  var loc = window.location
-  var form_data = $("#form")
-  var msg_input = $("#id_message")
-  var chat_messages = $("#chat_items")
-  var me = $("#my_username").val()
+  <script>
 
-  var ws_start = 'ws://'
-  if(loc.protocol == 'https'){
-    ws_start = 'wss://'
-  }
-  var endpoint = ws_start + loc.host + loc.pathname
-  var socket = new WebSocket(endpoint)
+    var loc = window.location
+    var form_data = $("#form")
+    var msg_input = $("#id_message")
+    var chat_messages = $("#chat_items")
+    var me = $("#my_username").val()
+    var ws_start = 'ws://'
 
-  socket.onmessage = function(e){
-    console.log("message", e)
-    var chat_msg = JSON.parse(e.data)
-    chat_messages.append("<li>" + chat_msg.message + " - " + chat_msg.username + "</li>")
-  }
+    if(loc.protocol == 'https'){
+      ws_start = 'wss://'
+    }
 
-  socket.onopen = function(e){
-    console.log("open", e)
-    form_data.submit(function(event){
-      event.preventDefault()
+    var endpoint = ws_start + loc.host + loc.pathname
+    var socket = new ReconnectingWebSocket(endpoint)
 
-      var msg_text = msg_input.val()
-      chat_messages.append("<li>" + msg_text + " - " + me + "</li>")
+    socket.onmessage = function(e){
+      var chat_msg = JSON.parse(e.data)
+      chat_messages.append("<li>" + chat_msg.message + " - " + chat_msg.username + "</li>")
+    }
 
-      var final_data = {
-        'message': msg_text
-      }
+    socket.onopen = function(e){
+      form_data.submit(function(event){
+        event.preventDefault()
 
-      socket.send(JSON.stringify(final_data)
-      msg_input.val('')      
-    })
-  }
+        var msg_text = msg_input.val()
 
-  socket.onerror = function(e){
-    console.log("error", e)
-  }
+        var final_data = {
+          'message': msg_text
+        }
 
-  socket.onclose = function(e){
-    console.log("close", e)
-  }
+        socket.send(JSON.stringify(final_data))
+        msg_input.val('')      
+      })
+    }
 
-</script>
+    socket.onerror = function(e){
+      console.log("error", e)
+    }
+
+    socket.onclose = function(e){
+      console.log("close", e)
+    }
+
+  </script>
+
 {% endblock %}

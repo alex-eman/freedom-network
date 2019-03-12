@@ -127,6 +127,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Channels Layer settings
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [("localhost", 8085)],
+        }
+    }
+}
+# Profile pictures related
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 

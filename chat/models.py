@@ -9,9 +9,9 @@ from django.db.models import Q
 class ThreadManager(models.Manager):
 
     def by_user(self, user):
-        qlookup = Q(first=user) | Q(second=user)
+        qlookup1 = Q(first=user) | Q(second=user)
         qlookup2 = Q(first=user) | Q(second=user)
-        qs = self.get_queryset().filter(qlookup).exclude(qlookup2).distinct()
+        qs = self.get_queryset().filter(qlookup1).exclude(qlookup2).distinct()
         return qs
 
     def get_or_new(self, user, other_username):
