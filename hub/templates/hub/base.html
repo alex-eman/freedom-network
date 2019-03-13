@@ -23,7 +23,7 @@
     {% block additional_styles %}
         <style>
             body{
-                background-color: #f4ebd4;
+                background-color: #cce2a3;
             }
         </style>
     {% endblock %}
@@ -74,7 +74,7 @@
 
     <main role="main" class="container">
         {% if user.is_authenticated %}
-            <div class="row p-3 m-auto text-white" style="background-color: #bab6a3;">
+            <div class="row p-3 m-auto text-white" style="background-color: #99a1a6;">
                 <div class="col col-lg-3">
                     <a class="badge badge-light {{ message_page }}" href="{% url 'hub-messages' %}">Messages</a>
                 </div>
