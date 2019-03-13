@@ -48,7 +48,7 @@ class Thread(models.Model):
 
     @property
     def room_group_name(self):
-        return f'chat_{self.id}'
+        return 'chat_{self.id}'
 
     def broadcast(self, msg=None):
         if msg is not None:

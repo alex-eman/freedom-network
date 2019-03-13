@@ -15,7 +15,7 @@ body {
   .bg-steel {
     /*background-color: #5f788a;*/
     /* background-color: #05386b */
-    background-color: #e5c957;
+    background-color: #a8c69f;
   }
   
   .site-header .navbar-nav .nav-link {
@@ -92,7 +92,12 @@ body {
     font-size: 1rem;
   }
 
+
   .active {
-    background-color: #e67d37;
-    color: #ffffff
+    background-color: #5c5d8d;
+    color: #ffffff;
   }
+
+
+
+  /* #654f6f  #5c5d8d  #99a1a6  #a8c69f  #cce2a3 */
