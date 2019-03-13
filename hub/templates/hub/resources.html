@@ -18,6 +18,7 @@
             <button class="dropdown-item" type="button" onclick="myFunction('EDUC')">Education</button>
             <button class="dropdown-item" type="button" onclick="myFunction('JOB')">Jobs</button>
             <button class="dropdown-item" type="button" onclick="myFunction('HOUSE')">Housing</button>
+            <button class="dropdown-item" type="button" onclick="myFunction('SOCIAL')">Social</button>
         </div>
     </div>
 
@@ -37,15 +38,17 @@
 
      <script>
      function myFunction(input){
-        var tech = document.querySelectorAll(".tech");
+        var tech = document.querySelectorAll(".technology");
         var education = document.querySelectorAll(".education");
         var jobs = document.querySelectorAll(".job");
         var housing = document.querySelectorAll(".housing");
+        var social = document.querySelectorAll(".social");
 
         var techStat = "none";
         var educStat = "none";
         var jobStat = "none";
         var houseStat = "none";
+        var socialStat = "none";
 
         switch (input){
             case "TECH":
@@ -60,6 +63,8 @@
             case "HOUSE":
                 houseStat = "block";
                 break;
+            case "SOCIAL":
+                socialStat = "block";
             case "ALL":
                 techStat = "block";
                 educStat = "block";
@@ -84,6 +89,10 @@
         var d;
         for(d = 0; d < housing.length; d++){
             housing[d].style.display = houseStat;
+        }
+        var e;
+        for(e = 0; e < social.length; e++){
+            social[e].style.display = socialStat;
         }
 
      }
