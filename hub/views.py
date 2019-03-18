@@ -55,8 +55,29 @@ def need_help(request):
     return render(request, 'hub/need_help.html')
 
 def messages(request):
-    context = {"message_page": "active"}
+    if request.user.is_staff:
+        
+        mentor = User.objects.filter(username=request.user.username)
+
+        context = {
+            "message_page": "active",
+            'people': Profile.objects.filter(mentor=mentor[0])
+        }
+    
+    else:
+
+        mentee = User.objects.filter(username=request.user.username)
+        temp = Profile.objects.filter(user=mentee[0])
+
+        context = {
+            "message_page": "active",
+            'people': Profile.objects.filter(user=temp[0].mentor)
+        }
+
     return render(request, 'hub/messages.html', context)
+
+    # context = {"message_page": "active"}
+    # return render(request, 'hub/messages.html', context)
 
 def resources(request):
 
