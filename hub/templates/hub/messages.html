@@ -5,6 +5,31 @@
 
 {% block content %}
 
-    <h1>Messages Page</h1>
+    <h1 class="mb-5">Messages Page</h1>
+
+    <div class="container">
+        {% for profile in people %}
+            {% if forloop.first%}
+                <div class="row">
+            {% endif %}
+            {% if forloop.counter|divisibleby:"4"  and forloop.first is not True %}
+                </div>
+                <div class="row">
+            {% endif %}
+
+            <div class="card col">
+                <img class="card-img-top" style="background-color: #5c5d8d;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ profile.user.first_name }}</h5>
+                    <a href="#" class="btn btn-primary">Message them</a>
+                </div>
+            </div>
+
+            {% if people.length == 0 %}
+                </div>
+                
+            {% endif %}
+        {% endfor %}
+    </div>
 
 {% endblock content %}
