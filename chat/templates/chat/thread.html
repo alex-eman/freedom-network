@@ -5,15 +5,34 @@
 
 {% block content %}
 
-  <h3>Thread for {% if user != object.first %}{{ object.first }}{% else %}{{ object.second }}{% endif %}</h3>
+  <h3>You are now chatting with {% if user != object.first %}{{ object.first }}{% else %}{{ object.second }}{% endif %}</h3>
 
-  <ul id='chat-items'>
+  <div id="chatBox" style="height: 500px; background-color: #ffffff; overflow:auto; ">
+    <div id="chat_items" >
+        {% for chat in object.chatmessage_set.all %}
 
-    {% for chat in object.chatmessage_set.all %}
-      <li>{{ chat.message }} - {{ chat.user }}</li>
-    {% endfor %}
+        {% if user == chat.user %}
+        <div class="text-right">{{chat.user}}</div>
+        <div class="alert alert-success ml-auto text-right" style="max-width: 350px">
+          {{chat.message}}
+        </div>
 
-  </ul>
+        {% else %}
+        <div>{{chat.user}}</div>
+        <div class="alert alert-info " style="max-width: 350px">
+         {{chat.message}}
+        </div>
+        {% endif %}
+
+
+       
+        {% endfor %}
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("chatBox").scrollTop = 10000
+  </script>
 
   <form id='form' method='POST'> 
   
@@ -26,7 +45,7 @@
 
 {% endblock %}
 
-{% block script %}
+{% block extra_js %}
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/reconnecting-websocket/1.0.0/reconnecting-websocket.js"></script>
 
@@ -53,7 +72,7 @@
 
     socket.onopen = function(e){
       form_data.submit(function(event){
-        event.preventDefault()
+        //event.preventDefault()
 
         var msg_text = msg_input.val()
 
@@ -62,7 +81,8 @@
         }
 
         socket.send(JSON.stringify(final_data))
-        msg_input.val('')      
+        msg_input.val('') 
+        return false     
       })
     }
 
@@ -76,4 +96,4 @@
 
   </script>
 
-{% endblock %}
+{% endblock extra_js %}
