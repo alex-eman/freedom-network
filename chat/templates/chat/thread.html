@@ -12,14 +12,14 @@
         {% for chat in object.chatmessage_set.all %}
 
         {% if user == chat.user %}
-        <div class="text-right">{{chat.user}}</div>
-        <div class="alert alert-success ml-auto text-right" style="max-width: 350px">
+        <div class="text-right mr-2">{{chat.user}}</div>
+        <div class="alert alert-primary ml-auto text-right" style="max-width: 350px">
           {{chat.message}}
         </div>
 
         {% else %}
-        <div>{{chat.user}}</div>
-        <div class="alert alert-info " style="max-width: 350px">
+        <div class="ml-2">{{chat.user}}</div>
+        <div class="alert alert-dark " style="max-width: 350px">
          {{chat.message}}
         </div>
         {% endif %}
