@@ -48,52 +48,56 @@
 {% block extra_js %}
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/reconnecting-websocket/1.0.0/reconnecting-websocket.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
-  <script>
+  <script type="text/javascript">
 
-    var loc = window.location
-    var form_data = $("#form")
-    var msg_input = $("#id_message")
-    var chat_messages = $("#chat_items")
-    var me = $("#my_username").val()
-    var ws_start = 'ws://'
+    $(function() {
+      var loc = window.location
+      var form_data = $("#form")
+      var msg_input = $("#id_message")
+      var chat_messages = $("#chat_items")
+      var me = $("#my_username").val()
+      var ws_start = 'ws://'
 
-    if(loc.protocol == 'https'){
-      ws_start = 'wss://'
-    }
+      if(loc.protocol == 'https'){
+        ws_start = 'wss://'
+      }
 
-    var endpoint = ws_start + loc.host + loc.pathname
-    var socket = new ReconnectingWebSocket(endpoint)
+      var endpoint = ws_start + loc.host + loc.pathname
+      var socket = new ReconnectingWebSocket(endpoint)
 
-    socket.onmessage = function(e){
-      var chat_msg = JSON.parse(e.data)
-      chat_messages.append("<li>" + chat_msg.message + " - " + chat_msg.username + "</li>")
-    }
+      socket.onmessage = function(e){
+        var chat_msg = JSON.parse(e.data)
+        chat_messages.append("<li>" + chat_msg.message + " - " + chat_msg.username + "</li>")
+      }
 
-    socket.onopen = function(e){
-      form_data.submit(function(event){
-        //event.preventDefault()
+      socket.onopen = function(e){
+        form_data.submit(function(event){
+          event.preventDefault()
 
-        var msg_text = msg_input.val()
+          var msg_text = msg_input.val()
 
-        var final_data = {
-          'message': msg_text
-        }
+          var final_data = {
+            'message': msg_text
+          }
 
-        socket.send(JSON.stringify(final_data))
-        msg_input.val('') 
-        return false     
-      })
-    }
+          socket.send(JSON.stringify(final_data))
+          msg_input.val('') 
+          return false     
+        })
+      }
 
-    socket.onerror = function(e){
-      console.log("error", e)
-    }
+      socket.onerror = function(e){
+        console.log("error", e)
+      }
 
-    socket.onclose = function(e){
-      console.log("close", e)
-    }
+      socket.onclose = function(e){
+        console.log("close", e)
+        socket.close()
+      }
 
+    });
   </script>
 
 {% endblock extra_js %}

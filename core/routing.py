@@ -16,7 +16,7 @@ application = ProtocolTypeRouter({
         AuthMiddlewareStack(
             URLRouter(
                 [
-                    url(r"^messages/(?P<username>[\w.@+-]+)/$", ChatConsumer),
+                    url(r"^messages/(?P<username>[\w.@+-]+)", ChatConsumer),
                 ]
             )
         )
