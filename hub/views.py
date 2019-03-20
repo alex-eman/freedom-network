@@ -23,7 +23,13 @@ def home(request):
 
         return render(request, 'hub/dashboard.html', context)
     else:
-        return render(request, 'hub/home.html')
+        res = Resource.objects.all()
+
+        context = {
+            "resources_page": "active",
+            'resources': res
+         }
+        return render(request, 'hub/resources.html', context)
 
 # Render About Freedom Network page
 def about_freenet(request):
