@@ -30,10 +30,6 @@
     </div>
   </div>
 
-  <script>
-    document.getElementById("chatBox").scrollTop = 10000
-  </script>
-
   <form id='form' method='POST'> 
   
     {% csrf_token %}
@@ -68,8 +64,28 @@
       var socket = new ReconnectingWebSocket(endpoint)
 
       socket.onmessage = function(e){
+        console.log("message", e)
+        console.log("[me] value:", me)
+        console.log("typeof [me] variable:", typeof me)
+        
         var chat_msg = JSON.parse(e.data)
-        chat_messages.append("<li>" + chat_msg.message + " - " + chat_msg.username + "</li>")
+
+        console.log("typeof [chat_msg.username] variable:", typeof chat_msg.username)
+
+        if(me.localeCompare(chat_msg.username) == 0){
+          console.log("message from self!")
+          chat_messages.append("<div class=\"text-right mr-2\">" + me + "</div>")
+          chat_messages.append("<div class=\"alert alert-primary ml-auto text-right\" style=\"max-width: 350px\">" + chat_msg.message + "</div>")
+
+        }else{
+          console.log("message from other!")
+          chat_messages.append("<div class=\"ml-2\">" + chat_msg.username + "</div>")
+          chat_messages.append("<div class=\"alert alert-dark\" style=\"max-width: 350px\">" + chat_msg.message + "</div>")
+        }
+
+        var myDiv = document.getElementById("chatBox")
+        myDiv.scrollTop = myDiv.scrollHeight
+        //chat_messages.append("<li>" + chat_msg.message + " - " + chat_msg.username + "</li>")
       }
 
       socket.onopen = function(e){
